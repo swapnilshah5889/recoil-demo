@@ -1,16 +1,18 @@
 import MyButton from "./button.component";
+import { useSetRecoilState } from "recoil";
+import { countState } from "../store/atoms";
 
-const IncreaseButton = ({count, setCount}) => {
+const IncreaseButton = () => {
 
-    function handleClick() {
-        setCount(count+1);
+    const setCount = useSetRecoilState(countState);
+    function handleClick () {
+        setCount((prevCount) => {return prevCount+1})
     }
-
     return (
         <MyButton 
             btnText={"Increment"}
             onClick={handleClick}
-            />
+        />
     );
 }
 
